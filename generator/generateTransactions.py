@@ -53,26 +53,26 @@ def generateTransactions(files, batchSize):
 				clientEdges[row[0]] = {}
 			clientEdges[row[0]].update(eval(row[1]))
 
-	with open(files['clients-companies-edges'], 'r') as file:
-		reader = csv.reader(file, delimiter="|")
-		for row in reader:
-			if not row[0] in clientEdges:
-				clientEdges[row[0]] = {}
-			clientEdges[row[0]].update(eval(row[1]))
-
-	with open(files['clients-atms-edges'], 'r') as file:
-		reader = csv.reader(file, delimiter="|")
-		for row in reader:
-			if not row[0] in clientEdges:
-				clientEdges[row[0]] = {}
-			clientEdges[row[0]].update(eval(row[1]))
-
-	with open(files['companies-clients-edges'], 'r') as file:
-		reader = csv.reader(file, delimiter="|")
-		for row in reader:
-			if not row[0] in clientEdges:
-				companyEdges[row[0]] = {}
-			companyEdges[row[0]].update(eval(row[1]))
+# 	with open(files['clients-companies-edges'], 'r') as file:
+# 		reader = csv.reader(file, delimiter="|")
+# 		for row in reader:
+# 			if not row[0] in clientEdges:
+# 				clientEdges[row[0]] = {}
+# 			clientEdges[row[0]].update(eval(row[1]))
+# 
+# 	with open(files['clients-atms-edges'], 'r') as file:
+# 		reader = csv.reader(file, delimiter="|")
+# 		for row in reader:
+# 			if not row[0] in clientEdges:
+# 				clientEdges[row[0]] = {}
+# 			clientEdges[row[0]].update(eval(row[1]))
+# 
+# 	with open(files['companies-clients-edges'], 'r') as file:
+# 		reader = csv.reader(file, delimiter="|")
+# 		for row in reader:
+# 			if not row[0] in clientEdges:
+# 				companyEdges[row[0]] = {}
+# 			companyEdges[row[0]].update(eval(row[1]))
 
 	clientSourcingTransactions = threading.Thread(target = lambda: __generateTransactions(
 		clientEdges,
@@ -81,16 +81,16 @@ def generateTransactions(files, batchSize):
 		label='transaction(client->*)'
 	))
 
-	companyClientTransactions = threading.Thread(target = lambda: __generateTransactions(
-		companyEdges,
-		files['companies-sourcing-transactions'],
-		batchSize,
-		label='transaction(company->client)'
-	))
+# 	companyClientTransactions = threading.Thread(target = lambda: __generateTransactions(
+# 		companyEdges,
+# 		files['companies-sourcing-transactions'],
+# 		batchSize,
+# 		label='transaction(company->client)'
+# 	))
 
 	clientSourcingTransactions.start()
-	companyClientTransactions.start()
-
+# 	companyClientTransactions.start()
+# 
 	clientSourcingTransactions.join()
-	companyClientTransactions.join()
+# 	companyClientTransactions.join()
 

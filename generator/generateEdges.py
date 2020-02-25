@@ -106,11 +106,11 @@ def generateEdges(files, probs, batchSize):
 	))
 
 	clientClientEdgesProcess.start()
-	clientCompanyEdgesProcess.start()
-	clientAtmEdgesProcess.start()
-	comapnyClientEdgesProcess.start()
+# 	clientCompanyEdgesProcess.start()
+# 	clientAtmEdgesProcess.start()
+# 	comapnyClientEdgesProcess.start()
 
 	clientClientEdgesProcess.join()
-	clientCompanyEdgesProcess.join()
-	clientAtmEdgesProcess.join()
-	comapnyClientEdgesProcess.join()
+# 	clientCompanyEdgesProcess.join()
+# 	clientAtmEdgesProcess.join()
+# 	comapnyClientEdgesProcess.join()
